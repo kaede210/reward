@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FiveM 犯罪報酬計算機</title>
 
     <style>
@@ -10,52 +11,85 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+
             background: #242424;
-            font-family: Arial, sans-serif;
-            color: white;
+            color: #ffffff;
+
+            font-family:
+                Arial,
+                "Noto Sans JP",
+                sans-serif;
+
+            padding: 20px;
         }
 
+        /* メイン画面 */
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 500px;
+
             padding: 30px;
+
             background: #303030;
+
             border: 1px solid #444;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.45);
         }
 
+        /* タイトル */
         h1 {
-            text-align: center;
             margin: 0 0 30px;
+
+            text-align: center;
+
             font-size: 26px;
+            line-height: 1.4;
         }
 
+        /* 入力部分 */
         .input-group {
             margin-bottom: 20px;
         }
 
         label {
             display: block;
+
             margin-bottom: 8px;
+
+            font-size: 16px;
             font-weight: bold;
         }
 
         input {
             width: 100%;
-            padding: 13px;
+
+            padding: 14px;
+
             font-size: 18px;
+
             border: 1px solid #555;
             border-radius: 8px;
+
             background: #3b3b3b;
-            color: white;
+            color: #ffffff;
+
             outline: none;
+
+            -webkit-appearance: none;
         }
 
         input:focus {
@@ -63,27 +97,60 @@
             background: #424242;
         }
 
+        input::placeholder {
+            color: #888;
+        }
+
+        /* 計算ボタン */
         .calculate-button {
             width: 100%;
-            padding: 14px;
+
+            padding: 15px;
+
             margin-top: 5px;
+
             border: none;
             border-radius: 8px;
-            background: #4f4f4f;
-            color: white;
+
+            background: #555555;
+            color: #ffffff;
+
             font-size: 18px;
             font-weight: bold;
+
             cursor: pointer;
+
+            transition: 0.2s;
         }
 
         .calculate-button:hover {
-            background: #606060;
+            background: #666666;
         }
 
+        .calculate-button:active {
+            transform: scale(0.98);
+        }
+
+        /* エラー */
+        .error {
+            min-height: 22px;
+
+            margin-top: 15px;
+
+            color: #ff7777;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+        /* 結果 */
         .result {
-            margin-top: 30px;
+            margin-top: 15px;
             padding: 20px;
+
             background: #262626;
+
             border: 1px solid #444;
             border-radius: 10px;
         }
@@ -91,58 +158,211 @@
         .result-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+
             gap: 10px;
+
             margin: 15px 0;
-            font-size: 18px;
         }
 
         .result-info {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+
             flex: 1;
+
             gap: 10px;
+
+            min-width: 0;
+        }
+
+        .result-label {
+            white-space: nowrap;
         }
 
         .amount {
             font-weight: bold;
-            color: white;
+
+            color: #ffffff;
+
+            white-space: nowrap;
         }
 
+        /* 1人当たり */
         .main-result {
-            font-size: 24px;
-            border-top: 1px solid #444;
+            margin-top: 20px;
             padding-top: 18px;
+
+            border-top: 1px solid #444;
+
+            font-size: 22px;
         }
 
+        /* コピー */
         .copy-button {
-            width: 75px;
-            padding: 7px 5px;
+            flex-shrink: 0;
+
+            width: 78px;
+
+            padding: 8px 5px;
+
             border: none;
             border-radius: 6px;
-            background: #555;
-            color: white;
-            cursor: pointer;
+
+            background: #555555;
+            color: #ffffff;
+
             font-size: 13px;
-            white-space: nowrap;
+
+            cursor: pointer;
+
+            transition: 0.2s;
         }
 
         .copy-button:hover {
             background: #686868;
         }
 
-        .error {
-            color: #ff7777;
-            text-align: center;
-            margin-top: 15px;
+        .copy-button:active {
+            transform: scale(0.95);
         }
 
+        /* コピー完了メッセージ */
         .copy-message {
-            text-align: center;
+            min-height: 22px;
+
+            margin-top: 12px;
+
             color: #9be29b;
-            margin-top: 15px;
-            min-height: 20px;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           スマホ用
+           ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                align-items: flex-start;
+
+                padding: 12px;
+            }
+
+            .container {
+                max-width: 100%;
+
+                margin-top: 10px;
+
+                padding: 22px 18px;
+
+                border-radius: 14px;
+            }
+
+            h1 {
+                margin-bottom: 25px;
+
+                font-size: 23px;
+            }
+
+            .input-group {
+                margin-bottom: 17px;
+            }
+
+            label {
+                font-size: 15px;
+            }
+
+            input {
+                padding: 15px;
+
+                font-size: 18px;
+            }
+
+            .calculate-button {
+                padding: 16px;
+
+                font-size: 18px;
+            }
+
+            .result {
+                padding: 15px;
+            }
+
+            .result-row {
+                margin: 14px 0;
+            }
+
+            .result-label {
+                font-size: 15px;
+            }
+
+            .amount {
+                font-size: 16px;
+            }
+
+            .copy-button {
+                width: 70px;
+
+                padding: 9px 4px;
+
+                font-size: 12px;
+            }
+
+            .main-result {
+                font-size: 20px;
+            }
+
+            .main-result .amount {
+                font-size: 19px;
+            }
+        }
+
+
+        /* さらに小さいスマホ */
+        @media (max-width: 380px) {
+
+            body {
+                padding: 8px;
+            }
+
+            .container {
+                padding: 20px 14px;
+            }
+
+            h1 {
+                font-size: 21px;
+            }
+
+            .result {
+                padding: 12px;
+            }
+
+            .result-label {
+                font-size: 14px;
+            }
+
+            .amount {
+                font-size: 14px;
+            }
+
+            .copy-button {
+                width: 65px;
+
+                font-size: 11px;
+            }
+
+            .main-result {
+                font-size: 18px;
+            }
+
+            .main-result .amount {
+                font-size: 17px;
+            }
         }
     </style>
 </head>
@@ -153,28 +373,50 @@
 
     <h1>💰 FiveM 犯罪報酬計算機</h1>
 
+
+    <!-- 全体報酬 -->
     <div class="input-group">
-        <label for="totalReward">全体の報酬額</label>
+
+        <label for="totalReward">
+            全体の報酬額
+        </label>
+
         <input
             type="number"
             id="totalReward"
             placeholder="例：100000"
             min="0"
+            inputmode="numeric"
         >
+
     </div>
 
+
+    <!-- 人数 -->
     <div class="input-group">
-        <label for="players">人数</label>
+
+        <label for="players">
+            人数
+        </label>
+
         <input
             type="number"
             id="players"
             placeholder="例：4"
             min="1"
+            inputmode="numeric"
         >
+
     </div>
 
+
+    <!-- プール徴収割合 -->
     <div class="input-group">
-        <label for="poolRate">プール徴収割合（%）</label>
+
+        <label for="poolRate">
+            プール徴収割合（%）
+        </label>
+
         <input
             type="number"
             id="poolRate"
@@ -182,37 +424,75 @@
             min="0"
             max="100"
             step="0.1"
+            inputmode="decimal"
         >
+
     </div>
 
-    <button class="calculate-button" onclick="calculate()">
+
+    <!-- 計算 -->
+    <button
+        class="calculate-button"
+        onclick="calculate()"
+    >
         計算する
     </button>
 
-    <div id="error" class="error"></div>
 
+    <div
+        id="error"
+        class="error"
+    ></div>
+
+
+    <!-- 結果 -->
     <div class="result">
+
 
         <!-- 全体報酬 -->
         <div class="result-row">
+
             <div class="result-info">
-                <span>💰 全体報酬</span>
-                <span class="amount" id="displayTotal">$0</span>
+
+                <span class="result-label">
+                    💰 全体報酬
+                </span>
+
+                <span
+                    class="amount"
+                    id="displayTotal"
+                >
+                    $0
+                </span>
+
             </div>
 
             <button
                 class="copy-button"
-                onclick="copyValue('displayTotal')"
+                onclick="copyValue('totalReward')"
             >
                 📋 コピー
             </button>
+
         </div>
+
 
         <!-- プール徴収額 -->
         <div class="result-row">
+
             <div class="result-info">
-                <span>🏦 プール徴収額</span>
-                <span class="amount" id="poolAmount">$0</span>
+
+                <span class="result-label">
+                    🏦 プール徴収額
+                </span>
+
+                <span
+                    class="amount"
+                    id="poolAmount"
+                >
+                    $0
+                </span>
+
             </div>
 
             <button
@@ -221,13 +501,26 @@
             >
                 📋 コピー
             </button>
+
         </div>
+
 
         <!-- 分配対象額 -->
         <div class="result-row">
+
             <div class="result-info">
-                <span>💵 分配対象額</span>
-                <span class="amount" id="distributionAmount">$0</span>
+
+                <span class="result-label">
+                    💵 分配対象額
+                </span>
+
+                <span
+                    class="amount"
+                    id="distributionAmount"
+                >
+                    $0
+                </span>
+
             </div>
 
             <button
@@ -236,13 +529,26 @@
             >
                 📋 コピー
             </button>
+
         </div>
+
 
         <!-- 1人当たり -->
         <div class="result-row main-result">
+
             <div class="result-info">
-                <span>👤 1人当たり</span>
-                <span class="amount" id="perPerson">$0</span>
+
+                <span class="result-label">
+                    👤 1人当たり
+                </span>
+
+                <span
+                    class="amount"
+                    id="perPerson"
+                >
+                    $0
+                </span>
+
             </div>
 
             <button
@@ -251,112 +557,333 @@
             >
                 📋 コピー
             </button>
+
         </div>
 
     </div>
 
-    <div id="copyMessage" class="copy-message"></div>
+
+    <!-- コピー完了表示 -->
+    <div
+        id="copyMessage"
+        class="copy-message"
+    ></div>
 
 </div>
 
 
 <script>
 
-function calculate() {
+    /*
+     * 計算処理
+     */
+    function calculate() {
 
-    const totalReward =
-        Number(document.getElementById("totalReward").value);
+        const totalReward =
+            Number(
+                document.getElementById("totalReward").value
+            );
 
-    const players =
-        Number(document.getElementById("players").value);
+        const players =
+            Number(
+                document.getElementById("players").value
+            );
 
-    const poolRate =
-        Number(document.getElementById("poolRate").value);
+        const poolRate =
+            Number(
+                document.getElementById("poolRate").value
+            );
 
-    const error =
-        document.getElementById("error");
 
-    error.textContent = "";
+        const error =
+            document.getElementById("error");
 
-    // 入力チェック
-    if (totalReward <= 0) {
-        error.textContent =
-            "全体の報酬額を入力してください。";
-        return;
+
+        error.textContent = "";
+
+
+        /* 入力チェック */
+
+        if (totalReward <= 0) {
+
+            error.textContent =
+                "全体の報酬額を入力してください。";
+
+            return;
+        }
+
+
+        if (players <= 0) {
+
+            error.textContent =
+                "人数を1人以上入力してください。";
+
+            return;
+        }
+
+
+        if (poolRate < 0 || poolRate > 100) {
+
+            error.textContent =
+                "プール徴収割合は0～100%で入力してください。";
+
+            return;
+        }
+
+
+        /* プール徴収額 */
+
+        const poolAmount =
+            totalReward * (poolRate / 100);
+
+
+        /* 分配対象額 */
+
+        const distributionAmount =
+            totalReward - poolAmount;
+
+
+        /* 1人当たり */
+
+        const perPerson =
+            distributionAmount / players;
+
+
+        /* 表示 */
+
+        document.getElementById("displayTotal").textContent =
+            "$" + formatNumber(totalReward);
+
+
+        document.getElementById("poolAmount").textContent =
+            "$" + formatNumber(poolAmount);
+
+
+        document.getElementById("distributionAmount").textContent =
+            "$" + formatNumber(distributionAmount);
+
+
+        document.getElementById("perPerson").textContent =
+            "$" + formatNumber(perPerson);
+
     }
 
-    if (players <= 0) {
-        error.textContent =
-            "人数を1人以上入力してください。";
-        return;
+
+    /*
+     * 数字を見やすくする
+     */
+    function formatNumber(number) {
+
+        return number.toLocaleString(
+            "ja-JP",
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
     }
 
-    if (poolRate < 0 || poolRate > 100) {
-        error.textContent =
-            "プール徴収割合は0～100%で入力してください。";
-        return;
+
+    /*
+     * 個別コピー
+     *
+     * 重要：
+     * 表示されている "$20,000" ではなく
+     * "20000" のように数字だけコピーする
+     */
+    function copyValue(type) {
+
+        let value;
+
+
+        /* 全体報酬 */
+
+        if (type === "totalReward") {
+
+            value =
+                Number(
+                    document.getElementById(
+                        "totalReward"
+                    ).value
+                );
+
+        }
+
+
+        /* プール徴収額 */
+
+        else if (type === "poolAmount") {
+
+            const totalReward =
+                Number(
+                    document.getElementById(
+                        "totalReward"
+                    ).value
+                );
+
+            const poolRate =
+                Number(
+                    document.getElementById(
+                        "poolRate"
+                    ).value
+                );
+
+            value =
+                totalReward * (poolRate / 100);
+
+        }
+
+
+        /* 分配対象額 */
+
+        else if (type === "distributionAmount") {
+
+            const totalReward =
+                Number(
+                    document.getElementById(
+                        "totalReward"
+                    ).value
+                );
+
+            const poolRate =
+                Number(
+                    document.getElementById(
+                        "poolRate"
+                    ).value
+                    );
+
+            const poolAmount =
+                totalReward * (poolRate / 100);
+
+            value =
+                totalReward - poolAmount;
+
+        }
+
+
+        /* 1人当たり */
+
+        else if (type === "perPerson") {
+
+            const totalReward =
+                Number(
+                    document.getElementById(
+                        "totalReward"
+                    ).value
+                );
+
+            const players =
+                Number(
+                    document.getElementById(
+                        "players"
+                    ).value
+                );
+
+            const poolRate =
+                Number(
+                    document.getElementById(
+                        "poolRate"
+                    ).value
+                );
+
+            const poolAmount =
+                totalReward * (poolRate / 100);
+
+            const distributionAmount =
+                totalReward - poolAmount;
+
+            value =
+                distributionAmount / players;
+
+        }
+
+
+        /* 入力チェック */
+
+        if (
+            !Number.isFinite(value) ||
+            value <= 0
+        ) {
+
+            document.getElementById(
+                "copyMessage"
+            ).textContent =
+                "先に計算してください。";
+
+            return;
+        }
+
+
+        /*
+         * 数字だけにする
+         *
+         * 例：
+         * 20,000 → 20000
+         * 20,000.5 → 20000.5
+         */
+        const copyText =
+            String(
+                Math.round(value * 100) / 100
+            );
+
+
+        /* コピー */
+
+        navigator.clipboard.writeText(copyText)
+            .then(() => {
+
+                const message =
+                    document.getElementById(
+                        "copyMessage"
+                    );
+
+                message.textContent =
+                    "✓ " + copyText +
+                    " をコピーしました！";
+
+
+                setTimeout(() => {
+
+                    message.textContent = "";
+
+                }, 2000);
+
+            })
+            .catch(() => {
+
+                document.getElementById(
+                    "copyMessage"
+                ).textContent =
+                    "コピーに失敗しました。";
+
+            });
+
     }
 
-    // プール徴収額
-    const poolAmount =
-        totalReward * (poolRate / 100);
 
-    // 分配対象額
-    const distributionAmount =
-        totalReward - poolAmount;
+    /*
+     * Enterキーでも計算できるようにする
+     */
+    document.querySelectorAll("input").forEach(
+        function(input) {
 
-    // 1人当たり
-    const perPerson =
-        distributionAmount / players;
+            input.addEventListener(
+                "keydown",
+                function(event) {
 
-    // 表示
-    document.getElementById("displayTotal").textContent =
-        "$" + totalReward.toLocaleString();
+                    if (event.key === "Enter") {
 
-    document.getElementById("poolAmount").textContent =
-        "$" + poolAmount.toLocaleString();
+                        calculate();
 
-    document.getElementById("distributionAmount").textContent =
-        "$" + distributionAmount.toLocaleString();
+                    }
 
-    document.getElementById("perPerson").textContent =
-        "$" + perPerson.toLocaleString(undefined, {
-            maximumFractionDigits: 2
-        });
-}
+                }
+            );
 
-
-// 個別コピー
-function copyValue(elementId) {
-
-    const value =
-        document.getElementById(elementId).textContent;
-
-    // $を含めた表示値をそのままコピー
-    navigator.clipboard.writeText(value)
-        .then(() => {
-
-            const message =
-                document.getElementById("copyMessage");
-
-            message.textContent =
-                "✓ " + value + " をコピーしました！";
-
-            setTimeout(() => {
-                message.textContent = "";
-            }, 2000);
-
-        })
-        .catch(() => {
-
-            document.getElementById("copyMessage").textContent =
-                "コピーに失敗しました。";
-
-        });
-}
+        }
+    );
 
 </script>
 
 </body>
 </html>
-```
